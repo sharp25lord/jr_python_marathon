@@ -3,6 +3,7 @@ from telegram.ext import ApplicationBuilder, MessageHandler, filters, CallbackQu
 
 from gpt import *
 from util import *
+token = load_message("token")
 
 async def start(update, context):
     text = load_message("main")
@@ -29,7 +30,7 @@ async def hello_button(update, context):
 
 
 
-app = ApplicationBuilder().token("7975439862:AAF7gI-U5pN4W2UYuYzOrHBmxyopWWv2ssg").build()
+app = ApplicationBuilder().token(token).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, hello))
 app.add_handler(CallbackQueryHandler(hello_button))
